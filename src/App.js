@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import LogoDinoco from './imgs/logo-dinoco.png';
+import Button from './components/Button';
+import Counter from './components/Counter';
+import { useState } from 'react';
 
 function App() {
+
+  const [numClick, setNumClick] = useState(0);
+
+  const driverClick = () =>{
+    setNumClick(numClick + 1);
+
+    console.log("Clic");
+  }
+
+  const restratCount = () =>{
+    setNumClick(0)
+    console.log("Restart");
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='logo-contenedor'>
+        <img 
+          className='logo'
+          src ={LogoDinoco}
+          alt='Logo'
+        />
+      </div>
+      <div className='contenedor-principal'>
+      <Counter clicks={numClick} />
+        <Button 
+        text='Clic'
+        clickButton={true}
+        driverClick={driverClick} />
+        <Button 
+          text='Restart'
+          clickButton={false}
+          driverClick={restratCount}
+        />
+      </div>
     </div>
   );
 }
